@@ -1,12 +1,12 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Benovate</title>
-	</head>
-	<body>
+
+{% block content %}
+	<div class="container text-center">
 		<div id="root"></div>
-		<script src="{% static 'dist/app.js' %}"></script>
-	</body>
-</html>
+	</div>
+{% endblock content %}
+
+{% block extra_js %}
+	<script src="{% static 'dist/app.js' %}"></script>
+{% endblock extra_js %}

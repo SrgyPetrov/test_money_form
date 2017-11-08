@@ -11,7 +11,8 @@ module.exports = {
 		modules: [
 			path.join(__dirname, "core/static/app"),
 			"node_modules"
-		]
+		],
+		extensions: [".js", ".json", ".es"]
 	},
 	module: {
 		rules: [

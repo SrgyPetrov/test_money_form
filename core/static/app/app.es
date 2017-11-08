@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import UsersForm from './form'
 
 
 ReactDOM.render(
-	<h1>Hello, world!</h1>,
+	<UsersForm />,
 	document.getElementById('root')
 );
