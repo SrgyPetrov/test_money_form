@@ -58,6 +58,7 @@ export default class UserAutocompleteInput extends React.Component {
 						</div>
 					}
 				/>
+				<span className="help-block">Начните вводить имя пользователя или ИНН</span>
 			</div>
 		)
 	}
