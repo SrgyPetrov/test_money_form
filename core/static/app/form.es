@@ -9,17 +9,23 @@ import RecipientsInput from './recipients-input'
 export default class UsersForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
+		this.state = this.createInitialState()
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	createInitialState() {
+		return {
 			user: '',
+			user_val: '',
 			amount: 0,
 			recipients: [],
 			errors: {
 				user: null,
 				recipients: null,
 				amount: null
-			}
+			},
+			success: false
 		}
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleSubmit(event) {
@@ -38,15 +44,17 @@ export default class UsersForm extends React.Component {
 				if (data.errors) {
 					this.setState({errors: data.errors})
 				} else {
-					this.setState({errors: {
-						user: null,
-						recipients: null,
-						amount: null
-					}})
+					this.setState(this.createInitialState())
+					this.displaySuccessMessage()
+
 				}
-				console.log(data)
 			}
 		});
+	}
+
+	displaySuccessMessage() {
+		this.setState({success:true})
+		setTimeout(() => {this.setState({success:false})}, 7000)
 	}
 
 	render() {
@@ -55,11 +63,14 @@ export default class UsersForm extends React.Component {
 				<div className="page-header text-center">
 					<h2>Форма для перевода денег</h2>
 				</div>
+				{this.state.success &&
+					<div className="alert alert-success">Перевод успешно завершен</div>
+				}
 				<form onSubmit={this.handleSubmit}>
-					<UserAutocompleteInput onSelect={(value) => this.setState({user:value})} error={this.state.errors.user}/>
-					<RecipientsInput onChange={(value) => this.setState({recipients:value})} error={this.state.errors.recipients}/>
-					<AmountInput onChange={(value) => this.setState({amount:value})} value={this.state.amount} error={this.state.errors.amount}/>
-					<button type="submit" className="btn btn-default">Совершить перевод</button>
+					<UserAutocompleteInput onChange={(item) => this.setState({user:item.pk, user_val:item.value})} error={this.state.errors.user} value={this.state.user_val} />
+					<RecipientsInput onChange={(value) => this.setState({recipients:value})} error={this.state.errors.recipients} items={this.state.recipients} />
+					<AmountInput onChange={(value) => this.setState({amount:value})} value={this.state.amount} error={this.state.errors.amount} />
+					<button type="submit" className="btn btn-default">Сделать перевод</button>
 				</form>
 			</div>
 		);

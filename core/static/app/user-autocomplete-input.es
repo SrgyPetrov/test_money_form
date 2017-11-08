@@ -8,7 +8,7 @@ export default class UserAutocompleteInput extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			value: '',
+			// value: '',
 			users: []
 		}
 	}
@@ -41,17 +41,13 @@ export default class UserAutocompleteInput extends React.Component {
 							<a href="#" onClick={(e) => {e.preventDefault()}}>{item.username} - {item.inn}</a>
 						</li>
 					}
-					value={this.state.value}
+					value={this.props.value}
 					onChange={(event, value) => {
-						this.setState({value})
+						this.props.onChange({value, pk: ""})
 						this.fetchUsers({query: value})
-						if (!value) {
-							this.props.onSelect(value)
-						}
 					}}
 					onSelect={(value, item) => {
-						this.setState({value: `${item.username} - ${item.inn}`})
-						this.props.onSelect(value)
+						this.props.onChange({pk:value, value:`${item.username} - ${item.inn}`})
 					}}
 					inputProps={{className: "form-control"}}
 					wrapperStyle={null}

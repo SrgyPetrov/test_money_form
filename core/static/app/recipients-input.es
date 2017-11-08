@@ -6,35 +6,29 @@ export default class RecipientsInput extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			value: '',
-			items: []
+			value: ''
 		}
 		this.addValue = this.addValue.bind(this);
 		this.removeValue = this.removeValue.bind(this);
 	}
 
 	addValue() {
-		let items = this.state.items
+		let items = this.props.items
 		if (!(items.includes(this.state.value))) {
 			items.push(this.state.value)
-			this.updateItems(items)
+			this.setState({
+				value: ''
+			})
+			this.props.onChange(items)
 		}
 	}
 
 	removeValue(item, e) {
-		let items = this.state.items
+		let items = this.props.items
 		let index = items.indexOf(item)
 		if (index !== -1) {
 			items.splice(index, 1);
 		}
-		this.updateItems(items)
-	}
-
-	updateItems(items) {
-		this.setState({
-			items: items,
-			value: ''
-		})
 		this.props.onChange(items)
 	}
 
@@ -51,10 +45,10 @@ export default class RecipientsInput extends React.Component {
 				{this.props.error ? (
 					<span className="help-block">{this.props.error}</span>
 				) : (
-					this.state.items.length > 0 && <span className="help-block">Нажмите на ИНН чтобы удалить его</span>
+					this.props.items.length > 0 && <span className="help-block">Нажмите на ИНН чтобы удалить его</span>
 				)}
 				<div className='added-items'>
-					{this.state.items.map((item, index) => (
+					{this.props.items.map((item, index) => (
 						<span key={index} onClick={this.removeValue.bind(this, item)} className="label label-default" style={{marginRight: "3px", cursor:"pointer"}}>{item}</span>
 					))}
 				</div>
