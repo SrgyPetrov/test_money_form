@@ -1,0 +1,12 @@
+*.mo
+*.pem
+*.pyc
+*.sqlite3
+*.log
+
+__pycache__
+
+.python-version
+
+/node_modules/
+/core/static/dist/
