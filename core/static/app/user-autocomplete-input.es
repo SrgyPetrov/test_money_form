@@ -31,7 +31,7 @@ export default class UserAutocompleteInput extends React.Component {
 
 	render() {
 		return (
-			<div className="form-group">
+			<div className={this.props.error ? "form-group has-error" : "form-group"}>
 				<label>Пользователь со счета которого нужно перевести деньги</label>
 				<ReactAutocomplete
 					items={this.state.users}
@@ -45,6 +45,9 @@ export default class UserAutocompleteInput extends React.Component {
 					onChange={(event, value) => {
 						this.setState({value})
 						this.fetchUsers({query: value})
+						if (!value) {
+							this.props.onSelect(value)
+						}
 					}}
 					onSelect={(value, item) => {
 						this.setState({value: `${item.username} - ${item.inn}`})
@@ -58,7 +61,11 @@ export default class UserAutocompleteInput extends React.Component {
 						</div>
 					}
 				/>
-				<span className="help-block">Начните вводить имя пользователя или ИНН</span>
+				{this.props.error ? (
+					<span className="help-block">{this.props.error}</span>
+				) : (
+					<span className="help-block">Начните вводить имя пользователя или ИНН</span>
+				)}
 			</div>
 		)
 	}

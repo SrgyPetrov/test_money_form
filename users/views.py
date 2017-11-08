@@ -1,8 +1,10 @@
 from django.db.models import Q
 from rest_framework.generics import ListAPIView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, TransferSerializer
 
 
 class UserList(ListAPIView):
@@ -15,3 +17,12 @@ class UserList(ListAPIView):
         if query is not None:
             qs = qs.filter(Q(inn__contains=query) | Q(username__contains=query))
         return qs
+
+
+@api_view(['POST'])
+def transfer(request):
+    serializer = TransferSerializer(data=request.data)
+    if serializer.is_valid():
+        print(serializer.validated_data)
+        return Response({'success': True})
+    return Response({'errors': serializer.errors})

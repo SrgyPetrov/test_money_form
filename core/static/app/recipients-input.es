@@ -15,8 +15,10 @@ export default class RecipientsInput extends React.Component {
 
 	addValue() {
 		let items = this.state.items
-		items.push(this.state.value)
-		this.updateItems(items)
+		if (!(items.includes(this.state.value))) {
+			items.push(this.state.value)
+			this.updateItems(items)
+		}
 	}
 
 	removeValue(item, e) {
@@ -38,7 +40,7 @@ export default class RecipientsInput extends React.Component {
 
 	render() {
 		return (
-			<div className="form-group">
+			<div className={this.props.error ? "form-group has-error" : "form-group"}>
 				<label>ИНН пользователей, на счета которых будут переведены деньги</label>
 				<div className="input-group">
 					<input type="number" className="form-control" value={this.state.value} onChange={(e) => this.setState({value: e.target.value})} />
@@ -46,9 +48,11 @@ export default class RecipientsInput extends React.Component {
 						<button className="btn btn-default" type="button" onClick={this.addValue}>+</button>
 					</span>
 				</div>
-				{this.state.items.length > 0 &&
-					<span className="help-block">Нажмите на ИНН чтобы удалить его</span>
-				}
+				{this.props.error ? (
+					<span className="help-block">{this.props.error}</span>
+				) : (
+					this.state.items.length > 0 && <span className="help-block">Нажмите на ИНН чтобы удалить его</span>
+				)}
 				<div className='added-items'>
 					{this.state.items.map((item, index) => (
 						<span key={index} onClick={this.removeValue.bind(this, item)} className="label label-default" style={{marginRight: "3px", cursor:"pointer"}}>{item}</span>
