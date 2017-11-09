@@ -3,6 +3,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from .billing import make_transfer
 from .models import User
 from .serializers import UserSerializer, TransferSerializer
 
@@ -23,6 +24,10 @@ class UserList(ListAPIView):
 def transfer(request):
     serializer = TransferSerializer(data=request.data)
     if serializer.is_valid():
-        print(serializer.validated_data)
+        make_transfer(
+            serializer.validated_data['user'],
+            serializer.validated_data['amount'],
+            serializer.validated_data['recipients']
+        )
         return Response({'success': True})
     return Response({'errors': serializer.errors})
