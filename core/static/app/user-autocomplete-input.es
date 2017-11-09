@@ -8,7 +8,6 @@ export default class UserAutocompleteInput extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			// value: '',
 			users: []
 		}
 	}

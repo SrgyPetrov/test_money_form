@@ -5,21 +5,16 @@ export default class RecipientsInput extends React.Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {
-			value: ''
-		}
 		this.addValue = this.addValue.bind(this);
 		this.removeValue = this.removeValue.bind(this);
 	}
 
 	addValue() {
 		let items = this.props.items
-		if (!(items.includes(this.state.value))) {
-			items.push(this.state.value)
-			this.setState({
-				value: ''
-			})
+		if (!(items.includes(this.props.value))) {
+			items.push(this.props.value)
 			this.props.onChange(items)
+			this.props.onChangeValue("")
 		}
 	}
 
@@ -37,7 +32,7 @@ export default class RecipientsInput extends React.Component {
 			<div className={this.props.error ? "form-group has-error" : "form-group"}>
 				<label>ИНН пользователей, на счета которых будут переведены деньги</label>
 				<div className="input-group">
-					<input type="number" className="form-control" value={this.state.value} onChange={(e) => this.setState({value: e.target.value})} />
+					<input type="number" className="form-control" value={this.props.value} onChange={(e) => this.props.onChangeValue(e.target.value)} />
 					<span className="input-group-btn">
 						<button className="btn btn-default" type="button" onClick={this.addValue}>+</button>
 					</span>

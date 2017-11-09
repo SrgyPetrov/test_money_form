@@ -19,6 +19,7 @@ export default class UsersForm extends React.Component {
 			user_val: '',
 			amount: 0,
 			recipients: [],
+			recipients_val: '',
 			errors: {
 				user: null,
 				recipients: null,
@@ -67,9 +68,23 @@ export default class UsersForm extends React.Component {
 					<div className="alert alert-success">Перевод успешно завершен</div>
 				}
 				<form onSubmit={this.handleSubmit}>
-					<UserAutocompleteInput onChange={(item) => this.setState({user:item.pk, user_val:item.value})} error={this.state.errors.user} value={this.state.user_val} />
-					<RecipientsInput onChange={(value) => this.setState({recipients:value})} error={this.state.errors.recipients} items={this.state.recipients} />
-					<AmountInput onChange={(value) => this.setState({amount:value})} value={this.state.amount} error={this.state.errors.amount} />
+					<UserAutocompleteInput
+						onChange={(item) => this.setState({user:item.pk, user_val:item.value})}
+						error={this.state.errors.user}
+						value={this.state.user_val}
+					/>
+					<RecipientsInput
+						onChange={(value) => this.setState({recipients:value})}
+						onChangeValue={(value) => this.setState({recipients_val:value})}
+						error={this.state.errors.recipients}
+						items={this.state.recipients}
+						value={this.state.recipients_val}
+					/>
+					<AmountInput
+						onChange={(value) => this.setState({amount:value})}
+						value={this.state.amount}
+						error={this.state.errors.amount}
+					/>
 					<button type="submit" className="btn btn-default">Сделать перевод</button>
 				</form>
 			</div>
