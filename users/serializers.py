@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import serializers
@@ -14,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TransferSerializer(serializers.Serializer):
 
-    amount = serializers.DecimalField(max_digits=14, decimal_places=2, min_value=0)
+    amount = serializers.DecimalField(max_digits=14, decimal_places=2, min_value=Decimal('0.01'))
     user = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.filter(is_active=True, is_superuser=False, is_staff=False),
         error_messages={
@@ -40,6 +42,7 @@ class TransferSerializer(serializers.Serializer):
             raise serializers.ValidationError(_("User may not be in recipients."))
         if data['user'].balance < data['amount']:
             raise serializers.ValidationError(_("Insufficient funds."))
-        if data['amount'] % len(data['recipients']):
+        per_recipient_amount = data['amount'] / len(data['recipients'])
+        if abs(per_recipient_amount.as_tuple().exponent) > 2:
             raise serializers.ValidationError(_("Can not be divided equally."))
         return data
