@@ -44,8 +44,9 @@ export default class RecipientsInput extends React.Component {
 				)}
 				<div className='added-items'>
 					{this.props.items.map((item, index) => (
-						<span key={index} onClick={this.removeValue.bind(this, item)} className="label label-default" style={{marginRight: "3px", cursor:"pointer"}}>{item}</span>
+						<span key={index} onClick={this.removeValue.bind(this, item)} className="label label-default" style={{margin: "3px 3px", float:"left", cursor:"pointer"}}>{item}</span>
 					))}
+					<div className="clearfix"></div>
 				</div>
 			</div>
 		)
