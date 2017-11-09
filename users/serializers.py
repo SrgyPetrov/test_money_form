@@ -34,3 +34,12 @@ class TransferSerializer(serializers.Serializer):
         if not value:
             raise serializers.ValidationError(_("Recipients list is empty."))
         return value
+
+    def validate(self, data):
+        if data['user'] in data['recipients']:
+            raise serializers.ValidationError(_("User may not be in recipients."))
+        if data['user'].balance < data['amount']:
+            raise serializers.ValidationError(_("Insufficient funds."))
+        if data['amount'] % len(data['recipients']):
+            raise serializers.ValidationError(_("Can not be divided equally."))
+        return data

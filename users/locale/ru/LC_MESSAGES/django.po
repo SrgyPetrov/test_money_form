@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-09 08:18+0300\n"
+"POT-Creation-Date: 2017-11-09 08:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,3 +48,15 @@ msgstr "Получатель с ИНН={value} не существует."
 #: serializers.py:35
 msgid "Recipients list is empty."
 msgstr "Список получателей пуст."
+
+#: serializers.py:40
+msgid "User may not be in recipients."
+msgstr "Пользователь со счета которого нужно перевести деньги не может быть в списке получателей."
+
+#: serializers.py:42
+msgid "Insufficient funds."
+msgstr "Недостаточно средств."
+
+#: serializers.py:44
+msgid "Can not be divided equally."
+msgstr "Сумма не может быть поделена ровно между получателями."
