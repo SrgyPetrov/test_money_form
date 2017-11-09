@@ -16,15 +16,21 @@ class TransferSerializer(serializers.Serializer):
 
     amount = serializers.DecimalField(max_digits=14, decimal_places=2, min_value=0)
     user = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.filter(is_active=True, is_superuser=False, is_staff=False)
+        queryset=User.objects.filter(is_active=True, is_superuser=False, is_staff=False),
+        error_messages={
+            'null': _('This field may not be empty.')
+        }
     )
     recipients = serializers.SlugRelatedField(
         many=True,
         slug_field='inn',
-        queryset=User.objects.filter(is_active=True, is_superuser=False, is_staff=False)
+        queryset=User.objects.filter(is_active=True, is_superuser=False, is_staff=False),
+        error_messages={
+            'does_not_exist': _('Object with INN={value} does not exist.')
+        }
     )
 
     def validate_recipients(self, value):
         if not value:
-            raise serializers.ValidationError(_("Recipients list is empty"))
+            raise serializers.ValidationError(_("Recipients list is empty."))
         return value

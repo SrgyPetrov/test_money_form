@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-08 21:17+0300\n"
+"POT-Creation-Date: 2017-11-09 08:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,15 @@ msgstr "ИНН"
 msgid "Balance"
 msgstr "Баланс"
 
+#: serializers.py:21
+msgid "This field may not be empty."
+msgstr "Это поле не может быть пустым."
+
 #: serializers.py:29
-msgid "Recipients list is empty"
-msgstr "Список получателей пуст"
+#, python-brace-format
+msgid "Object with INN={value} does not exist."
+msgstr "Получатель с ИНН={value} не существует."
+
+#: serializers.py:35
+msgid "Recipients list is empty."
+msgstr "Список получателей пуст."
