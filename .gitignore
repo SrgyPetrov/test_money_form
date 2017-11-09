@@ -7,6 +7,7 @@
 __pycache__
 
 .python-version
+.cache/
 
 /node_modules/
 /core/static/dist/

@@ -1,0 +1,72 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "is_superuser": false,
+            "username": "one",
+            "is_staff": false,
+            "is_active": true,
+            "inn": "111111111111",
+            "balance": "10.10",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "is_superuser": false,
+            "username": "two",
+            "is_staff": false,
+            "is_active": true,
+            "inn": "222222222222",
+            "balance": "20.20",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "is_superuser": false,
+            "username": "three",
+            "is_staff": false,
+            "is_active": true,
+            "inn": "333333333333",
+            "balance": "30.30",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 4,
+        "fields": {
+            "is_superuser": false,
+            "username": "four",
+            "is_staff": false,
+            "is_active": true,
+            "inn": "444444444444",
+            "balance": "40.40",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 5,
+        "fields": {
+            "is_superuser": false,
+            "username": "five",
+            "is_staff": false,
+            "is_active": true,
+            "inn": "555555555555",
+            "balance": "50.50",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
