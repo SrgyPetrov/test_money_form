@@ -23,7 +23,8 @@ export default class UsersForm extends React.Component {
 			errors: {
 				user: null,
 				recipients: null,
-				amount: null
+				amount: null,
+				non_field_errors: []
 			},
 			success: false
 		}
@@ -67,6 +68,9 @@ export default class UsersForm extends React.Component {
 				{this.state.success &&
 					<div className="alert alert-success">Перевод успешно завершен</div>
 				}
+				{this.state.errors.non_field_errors.map((item, index) => (
+					<div key={index} className="alert alert-danger">{item}</div>
+				))}
 				<form onSubmit={this.handleSubmit}>
 					<UserAutocompleteInput
 						onChange={(item) => this.setState({user:item.pk, user_val:item.value})}
