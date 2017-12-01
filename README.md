@@ -1,29 +1,35 @@
-Установить зависимости:
+Установка зависимостей:
 
 ```
 pip install -r requirements.txt
 npm install
 ```
 
-Применить миграции БД:
+Применение миграций БД:
 
 ```
 python manage.py migrate
 ```
 
-Загрузить тестовые данные в БД:
+Загрузка тестовых данных в БД:
 
 ```
-python manage.py loaddata users/fixtures/users.json
+python manage.py loaddata users
 ```
 
-Запустить тесты:
+Создание переводов:
+
+```
+python manage.py compilemessages
+```
+
+Запуск тестов:
 
 ```
 py.test
 ```
 
-Запустить сервер:
+Запуск приложения:
 
 ```
 python manage.py runserver
